@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <EmailList />
+
 </template>
 
 <style scoped>
