@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
+import { Button } from '@/components/ui/button'
 interface Link {
   name: string;
   path: string;
@@ -50,57 +50,12 @@ const composeEmail = () => {
     </nav>
     <div class="compose-button">
       <i class="fas fa-plus"/>
-      <button @click="composeEmail">Nouveau message</button>
+      <Button @click="composeEmail">Nouveau message</Button>
     </div>
 
 </div>
 </template>
 
 <style scoped lang="scss">
-.sidebar {
-  width: 200px;
-  height: 100vh;
-  background-color: #f5f5f5;
-  transition: all 0.3s ease;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  color: #333;
 
-  nav ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-  }
-
-  nav ul li {
-    margin: 20px 0;
-    text-align: left;
-  }
-
-  nav a {
-    color: #333;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-
-    &:hover {
-      background-color: #ddd;
-      text-decoration: underline;
-    }
-  }
-}
-.compose-button {
-  margin-top: auto;
-  padding: 10px 20px;
-}
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    background-color: #45a049;
-  }
-}
 </style>

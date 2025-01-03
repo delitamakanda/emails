@@ -6,11 +6,25 @@ definePageMeta({
     { name: 'keywords', content: 'nuxt, vuejs, my app' }
   ],
 })
+import {SidebarProvider, Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarGroupContent } from '@/components/ui/sidebar'
 </script>
 
 <template>
 <div>
-  <Sidebar />
+  <SidebarProvider>
+    <Sidebar>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>emails</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  </SidebarProvider>
   <slot />
 </div>
 </template>

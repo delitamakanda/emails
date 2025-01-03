@@ -2,7 +2,14 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxt/image', '@pinia/nuxt', '@nuxt/eslint'],
+  modules: [
+    '@nuxt/image',
+    '@pinia/nuxt',
+    '@nuxt/eslint',
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
+    '@nuxtjs/color-mode'
+  ],
   image: {
     quality: 80,
     formats: ['avif', 'jpeg', 'png'],
@@ -34,5 +41,9 @@ export default defineNuxtConfig({
         middleware: ['auth']
       }
     }
+  },
+  shadcn: {
+    prefix: '',
+    componentDir: 'components/ui',
   }
 })
