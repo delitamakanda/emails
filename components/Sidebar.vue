@@ -49,7 +49,7 @@ const composeEmail = () => {
       </ul>
     </nav>
     <div class="compose-button">
-      <i class="fas fa-plus"></i>
+      <i class="fas fa-plus"/>
       <button @click="composeEmail">Nouveau message</button>
     </div>
 
