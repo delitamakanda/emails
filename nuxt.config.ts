@@ -29,5 +29,10 @@ export default defineNuxtConfig({
       }
     },
     dir: 'assets/images',
+    routeRules: {
+      '/': {
+        middleware: ['auth']
+      }
+    }
   }
 })
