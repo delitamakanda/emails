@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {Inbox, File, ArchiveX, Trash2, Archive, Send } from "lucide-vue-next";
+
 const props = defineProps({
   accounts: {
     type: Array,
@@ -32,7 +34,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 const { selected, setSelected } = useMail()
 
 const isCollapsed = computed(() => {
-  return props.navCollapsedSize || props.defaultLayout[2]
+  return false
 })
 const setIsCollapsed = (value: boolean) => {
   props.navCollapsedSize && (props.defaultLayout[2] = value? props.navCollapsedSize : 20)
@@ -87,6 +89,47 @@ const handleResize = () => {
         <!-- todo: account switcher -->
       </div>
       <Separator />
+      <Nav
+          :isCollapsed="isCollapsed"
+          :links="[{
+            title: 'Inbox',
+            label: '128',
+            icon: Inbox,
+            variant: 'default',
+            },
+           {
+              title: 'Drafts',
+              label: '9',
+              icon: File,
+              variant: 'ghost',
+           },
+           {
+                title: 'Sent',
+      label: '',
+      icon: Send,
+      variant: 'ghost',
+      },
+      {
+      title: 'Junk',
+      label: '23',
+      icon: ArchiveX,
+      variant: 'ghost',
+      },
+      {
+      title: 'Trash',
+      label: '',
+      icon: Trash2,
+      variant: 'ghost',
+      },
+      {
+      title: 'Archive',
+      label: '',
+      icon: Archive,
+      variant: 'ghost',
+      }
+
+          ]"
+      />
     </ResizablePanel>
     <ResizableHandle withHandle />
     <ResizablePanel :defaultSize="defaultLayout[1] as number" :minSize="30">
