@@ -1,69 +1,55 @@
 <script setup lang="ts">
-const emailsList = ref([
-  {
-    id: 1,
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    status: 'unread',
-    message: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    timestamp: '2022-01-01 10:00:00',
-    isStarred: false,
-    isImportant: false,
-    isRead: false,
-    isSpam: false,
-    isDeleted: false,
-    isArchived: false,
-    isDraft: false,
-    isForwarded: false,
-    isReplied: false,
-    isTrashed: false,
-    isFromMe: false,
+const props = defineProps({
+  accounts: {
+    type: Array,
+    required: true
   },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    email: 'janesmith@example.com',
-    status:'read',
-    message: 'Donec sed lectus vel felis consectetur, nec viverra neque semper.',
-    timestamp: '2022-01-02 12:30:00',
-    isStarred: true,
-    isImportant: true,
-    isRead: true,
-    isSpam: false,
-    isDeleted: false,
-    isArchived: false,
-    isDraft: false,
-    isForwarded: false,
-    isReplied: false,
-    isTrashed: false,
-    isFromMe: true,
+  mails: {
+    type: Array,
+    required: true
   },
-    {
-    id: 3,
-    name: 'Alice Johnson',
-    email: 'alicejohnson@example.com',
-    status: 'unread',
-    message: 'Ut euismod arcu non justo ullamcorper, sed tincidunt erat consectetur.',
-    timestamp: '2022-01-03 14:45:00',
-    isStarred: false,
-    isImportant: false,
-    isRead: false,
-    isSpam: false,
-    isDeleted: false,
-    isArchived: false,
-    isDraft: false,
-    isForwarded: false,
-    isReplied: false,
-    isTrashed: false,
-    isFromMe: false,
+  defaultLayout: {
+    type: Array,
+    default: [20, 32, 48],
   },
-])
+  defaultCollapsed: {
+    type: Boolean,
+    default: false,
+  },
+  navCollapsedSize: {
+    type: Number,
+  }
+})
+import { cn } from "@/lib/utils"
+import type { Mail, Account } from '@/data'
+import { useMail } from '@/composables/useEmails'
+
+const { selected, setSelected } = useMail()
 </script>
 
 <template>
 <div>
-<EmailItem v-for="email in emailsList" :key="email.id" :email="email" />
-
+  <div v-for="account in accounts as Account[]" :key="Math.max(Math.random())">
+    <div :class="cn('account', { 'active': selected })">
+      <div class="account-icon">
+        <!-- Account Icon -->
+      </div>
+      <div class="account-info">
+        <div class="account-name">{{ account.label }}</div>
+        <div class="account-mail">{{ account.email }}</div>
+      </div>
+    </div>
+  </div>
+  <div v-for="mail in mails as Mail[]" :key="Math.max(Math.random())">
+    <div :class="cn('mail', { 'active': selected === mail.id })">
+      <div class="mail-icon">
+        <!-- Mail Icon -->
+      </div>
+      <div class="mail-info">
+        <div class="mail-subject">{{ mail.subject }}</div>
+      </div>
+    </div>
+  </div>
 </div>
 </template>
 

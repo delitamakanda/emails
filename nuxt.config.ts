@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    'nuxt-lucide-icons'
   ],
   image: {
     quality: 80,
