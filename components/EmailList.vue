@@ -23,12 +23,113 @@ const props = defineProps({
 import { cn } from "@/lib/utils"
 import type { Mail, Account } from '@/data'
 import { useMail } from '@/composables/useEmails'
+import { Input } from '@/components/ui/input'
+import { Separator } from '@/components/ui/separator'
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+
 
 const { selected, setSelected } = useMail()
+
+const isCollapsed = computed(() => {
+  return props.navCollapsedSize || props.defaultLayout[2]
+})
+const setIsCollapsed = (value: boolean) => {
+  props.navCollapsedSize && (props.defaultLayout[2] = value? props.navCollapsedSize : 20)
+}
+
+const handleLayout = (sizes: number[]) => {
+  document.cookie = `resizable-panels:layout:mail=${JSON.stringify(sizes)}`
+}
+
+const handleCollapse = () => {
+  setIsCollapsed(true)
+  document.cookie = `resizable-panels:collapsed=${JSON.stringify(
+      true
+  )}`
+}
+const handleResize = () => {
+  setIsCollapsed(true)
+  document.cookie = `resizable-panels:collapsed=${JSON.stringify(
+      true
+  )}`
+}
+
 </script>
 
 <template>
-<div>
+<TooltipProvider :delayDuration=0>
+  <ResizablePanelGroup direction="horizontal" :onLayout="handleLayout"
+    class="h-full max-h-[800px] items-stretch">
+    <ResizablePanel
+        :defaultSize="defaultLayout[0] as number"
+        :collapsedSize=navCollapsedSize
+        :collapsible="true"
+        :minSize="15"
+        :maxSize="20"
+        :onCollapse="handleCollapse"
+        :onResize="handleResize"
+        :class="cn(
+            {
+              'min-w-[50px] transition-all duration-300 ease-in-out': isCollapsed,
+            }
+          )"
+    >
+      <div
+          :class="cn(
+              'flex h-[52px] items-center justify-center',
+              {
+              'h-[52px]': isCollapsed,
+              'px-2': !isCollapsed,
+              }
+          )"
+      >
+        <!-- todo: account switcher -->
+      </div>
+      <Separator />
+    </ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel :defaultSize="defaultLayout[1] as number" :minSize="30">
+      <Tabs defaultValue="all">
+        <div class="flex items-center px-4 py-2">
+          <h1 class="text-xl font-bold">Inbox</h1>
+          <TabsList class="ml-auto">
+            <TabsTrigger
+                value="all"
+                class="text-zinc-600 dark:text-zinc-200"
+            >
+              All mail
+            </TabsTrigger>
+            <TabsTrigger
+                value="unread"
+                class="text-zinc-600 dark:text-zinc-200"
+            >
+              Unread
+            </TabsTrigger>
+          </TabsList>
+        </div>
+        <Separator />
+        <div class="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <form>
+            <div class="relative">
+              <Search class="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input placeholder="Search" class="pl-8" />
+            </div>
+          </form>
+        </div>
+        <TabsContent value="all" class="m-0">
+          <!-- todo: mail list -->
+        </TabsContent>
+        <TabsContent value="unread" class="m-0">
+          <!-- todo: unread mail list -->
+        </TabsContent>
+      </Tabs>
+    </ResizablePanel>
+    <ResizableHandle withHandle />
+    <ResizablePanel :defaultSize="defaultLayout[2] as number" :minSize=30>
+     <!-- todo: mails details -->
+    </ResizablePanel>
+  </ResizablePanelGroup>
   <div v-for="account in accounts as Account[]" :key="Math.max(Math.random())">
     <div :class="cn('account', { 'active': selected })">
       <div class="account-icon">
@@ -50,7 +151,7 @@ const { selected, setSelected } = useMail()
       </div>
     </div>
   </div>
-</div>
+</TooltipProvider>
 </template>
 
 <style scoped>
