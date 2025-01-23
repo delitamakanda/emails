@@ -3,11 +3,11 @@ definePageMeta({
   title: 'Page Title',
 })
 </script>
+
+<template>
 <div>
 <slot />
 </div>
-<template>
-
 </template>
 
 <style scoped>
