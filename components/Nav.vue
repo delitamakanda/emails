@@ -70,7 +70,6 @@ defineProps({
           </NuxtLink>
         </template>
       </template>
-
     </nav>
   </div>
 </template>

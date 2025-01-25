@@ -3,8 +3,8 @@ import { mails, accounts } from '@/data'
 const layout = useCookie("resizable-panels:layout:mail")
 const collapsed = useCookie("resizable-panels:collapsed")
 
-const defaultLayout = layout ? layout.value : undefined
-const defaultCollapsed = collapsed ? collapsed.value : undefined
+const defaultLayout = layout ? layout?.value : ''
+const defaultCollapsed = collapsed ? collapsed?.value : false
 </script>
 
 <template>
@@ -26,7 +26,9 @@ const defaultCollapsed = collapsed ? collapsed.value : undefined
       />
     </div>
     <div class="hidden flex-col md:flex">
-      <EmailList :accounts="accounts" :mails="mails" />
+      <EmailList :accounts="accounts" :mails="mails" :defaultLayout="defaultLayout as unknown as any[]"
+                 :defaultCollapsed="defaultCollapsed as boolean"
+                 :navCollapsedSize="4"/>
     </div>
   </div>
 

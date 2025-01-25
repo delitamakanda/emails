@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Inbox, File, ArchiveX, Trash2, Archive, Send } from "lucide-vue-next";
+import {Inbox, File, ArchiveX, Trash2, Archive, Send, User2, AlertCircle, ShoppingCart} from "lucide-vue-next";
 
 const props = defineProps({
   accounts: {
@@ -29,7 +29,6 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-
 
 const { selected, setSelected } = useMail()
 
@@ -86,7 +85,18 @@ const handleResize = () => {
               }
           )"
       >
-        <!-- todo: account switcher -->
+        <AccountSwitcher :isCollapsed="isCollapsed" :accounts="[
+            {
+              label: 'Account 1',
+              email: 'john.doe@example.com',
+              icon: User2,
+            },
+            {
+              label: 'Account 2',
+              email: 'jane.doe@example.com',
+              icon: User2,
+            }
+        ]" />
       </div>
       <Separator />
       <Nav
@@ -128,6 +138,36 @@ const handleResize = () => {
       variant: 'ghost',
       }
 
+          ]"
+      />
+      <Separator />
+      <Nav
+          :isCollapsed="isCollapsed"
+          :links="[
+              {
+                title: 'Social',
+                label: '972',
+                icon: User2,
+                variant: 'ghost',
+              },
+              {
+                title: 'Updates',
+                label: '342',
+                icon: AlertCircle,
+                variant: 'ghost',
+              },
+              {
+                title: 'Shopping',
+                label: '8',
+                icon: ShoppingCart,
+                variant: 'ghost',
+              },
+              {
+                title: 'Promotions',
+                label: '21',
+                icon: Archive,
+                variant: 'ghost',
+              }
           ]"
       />
     </ResizablePanel>
