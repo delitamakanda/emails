@@ -201,39 +201,20 @@ const handleResize = () => {
           </form>
         </div>
         <TabsContent value="all" class="m-0">
-          <!-- todo: mail list -->
+          <Emails :items="mails" />
         </TabsContent>
         <TabsContent value="unread" class="m-0">
-          <!-- todo: unread mail list -->
+          <Emails :items="mails.filter((item) => !item.read)" />
         </TabsContent>
       </Tabs>
     </ResizablePanel>
     <ResizableHandle withHandle />
     <ResizablePanel :defaultSize="defaultLayout[2] as number" :minSize=30>
-     <!-- todo: mails details -->
+      <EmailItem
+          :mail="mails.find((item) => item.id === selected) || null"
+      />
     </ResizablePanel>
   </ResizablePanelGroup>
-  <div v-for="account in accounts as Account[]" :key="Math.max(Math.random())">
-    <div :class="cn('account', { 'active': selected })">
-      <div class="account-icon">
-        <!-- Account Icon -->
-      </div>
-      <div class="account-info">
-        <div class="account-name">{{ account.label }}</div>
-        <div class="account-mail">{{ account.email }}</div>
-      </div>
-    </div>
-  </div>
-  <div v-for="mail in mails as Mail[]" :key="Math.max(Math.random())">
-    <div :class="cn('mail', { 'active': selected === mail.id })">
-      <div class="mail-icon">
-        <!-- Mail Icon -->
-      </div>
-      <div class="mail-info">
-        <div class="mail-subject">{{ mail.subject }}</div>
-      </div>
-    </div>
-  </div>
 </TooltipProvider>
 </template>
 
