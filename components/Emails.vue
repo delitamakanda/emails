@@ -32,7 +32,6 @@ const getBadgeVariantFromLabel = (label: string) => {
         <button :class="cn(
             'flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all hover:bg-accent',
              selected === item.id ? 'bg-muted' : '')" @click="setSelected(item.id)">
-        >
           <div class="flex w-full flex-col gap-1">
             <div class="flex items-center">
               <div class="flex items-center gap-2">
