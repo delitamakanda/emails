@@ -99,7 +99,7 @@ import {
                     variant="ghost"
                     class="justify-start font-normal"
                 >
-                  Later today{" "}
+                  Later today{{ " " }}
                   <span class="ml-auto text-muted-foreground">
                         {{ format(addHours(today, 4), "E, h:m b") }}
                       </span>
