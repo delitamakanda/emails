@@ -23,14 +23,13 @@ const props = defineProps({
   }
 })
 import { cn } from "@/lib/utils"
-import type { Mail, Account } from '@/data'
 import {useEmails} from '@/composables/useEmails'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
-const { selected, setSelected } = useEmails()
+const { selected } = useEmails()
 
 const isCollapsed = computed(() => {
   return false

@@ -13,7 +13,7 @@ import {
   ReplyAll,
   Trash2,
 } from "lucide-vue-next"
-import type { Mail } from '@/data';
+const today = ref(new Date())
 
 const props = defineProps({
   mail: {
@@ -101,7 +101,7 @@ import {
                 >
                   Later today{" "}
                   <span class="ml-auto text-muted-foreground">
-                        {format(addHours(today, 4), "E, h:m b")}
+                        {{ format(addHours(today, 4), "E, h:m b") }}
                       </span>
                 </Button>
                 <Button
@@ -110,7 +110,7 @@ import {
                 >
                   Tomorrow
                   <span class="ml-auto text-muted-foreground">
-                        {format(addDays(today, 1), "E, h:m b")}
+                        {{ format(addDays(today, 1), "E, h:m b") }}
                       </span>
                 </Button>
                 <Button
@@ -119,7 +119,7 @@ import {
                 >
                   This weekend
                   <span class="ml-auto text-muted-foreground">
-                        {format(nextSaturday(today), "E, h:m b")}
+                        {{ format(nextSaturday(today), "E, h:m b") }}
                       </span>
                 </Button>
                 <Button
@@ -128,7 +128,7 @@ import {
                 >
                   Next week
                   <span class="ml-auto text-muted-foreground">
-                        {format(addDays(today, 7), "E, h:m b")}
+                        {{ format(addDays(today, 7), "E, h:m b") }}
                       </span>
                 </Button>
               </div>

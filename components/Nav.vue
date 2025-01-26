@@ -31,19 +31,20 @@ defineProps({
             <TooltipTrigger asChild>
               <NuxtLink
                   href="#"
-                  class=""
+                  :class="cn(buttonVariants({ variant: link.variant, size: 'icon' }), 'h-9 w-9', {
+                    'dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white': link.variant === 'default',
+                  })"
               >
-
-              <span class="sr-only">{link.title}</span>
+                <component :is="link.icon" class="mr-2 h-4 w-4" />
+                <span class="sr-only">{{ link.title }}</span>
               </NuxtLink>
             </TooltipTrigger>
             <TooltipContent side="right" class="flex items-center gap-4">
-              {link.title}
+              {{ link.title }}
 
               <span v-if="link.label" class="ml-auto text-muted-foreground">
-                    {link.label}
+                    {{ link.label }}
                   </span>
-
             </TooltipContent>
           </Tooltip>
         </template>
@@ -59,7 +60,7 @@ defineProps({
                   }
               )"
           >
-            <link.icon class="mr-2 h-4 w-4" />
+            <component :is="link.icon" class="mr-2 h-4 w-4" />
             {{ link.title }}
 
           <span v-if="link.label" :class="cn('ml-auto',{
