@@ -39,7 +39,7 @@ const setSelectedAccount = (email: string) => {
     <template v-for="account in props.accounts" :key="account.email">
       <SelectItem :value="account.email">
         <div class="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
-          <account.icon />
+          <component :is="account.icon" />
           {{ account?.email }}
         </div>
       </SelectItem>

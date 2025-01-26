@@ -71,7 +71,7 @@ const handleResize = () => {
         :onResize="handleResize"
         :class="cn(
             {
-              'min-w-[50px] transition-all duration-300 ease-in-out': isCollapsed,
+              'min-w-[50px] transition-all duration-300 ease-in-out': isCollapsed
             }
           )"
     >
