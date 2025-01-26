@@ -3,9 +3,9 @@ import { cn } from "@/lib/utils"
 import {formatDistanceToNow} from "date-fns/formatDistanceToNow"
 import { Badge } from '@/components/ui/badge'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { useMail } from '@/composables/useEmails'
+import { useEmails } from '@/composables/useEmails'
 
-const { selected, setSelected } = useMail()
+const { selected, setSelected } = useEmails()
 
 defineProps({
   items: {

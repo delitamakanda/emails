@@ -212,7 +212,7 @@ import {
         </div>
       </div>
       <div v-if="mail.date" class="ml-auto text-xs text-muted-foreground">
-        {format(new Date(mail.date), "PPpp")}
+        {{ format(new Date(mail.date), "PPpp") }}
       </div>
     </div>
     <Separator />
